@@ -22,6 +22,4 @@ def add_to_cart(request, product_id):
     quantity = int(request.POST.get('quantity', 1))
     if quantity > product.stock:
         return HttpResponse("Not enough stock available")
-    
-   cart,created=Cart.objects.get_or_create(user=user)
    
