@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Materials</title>
+</head>
+<body>
+    <h2>Materials List</h2>
+    {% if material %}
+    {% for m in material %}
+    <div>
+        <h3>{{ m.name }}</h3>
+        <p>Price: {{ m.price }}</p>
+        <p>Bulk Price: {{ m.bulk_price }}</p>
+        <p>Quantity: {{ m.quantity }} {{ m.unit }}</p>
+        {% if m.image %}
+        <img src="{{ m.image.url }}" alt="{{ m.name }}" style="max-width: 200px;">
+        {% endif %}
+        <p>{{ m.description }}</p>
+    </div>
+    {% endfor %}
+    {% else %}
+    <p>No materials available.</p>
+    {% endif %}
+</body>
+</html>

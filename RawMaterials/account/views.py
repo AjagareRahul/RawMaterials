@@ -1,6 +1,5 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout 
-# Create your views here.
 from django.http import HttpResponse
 from .forms import RegisterForm
 
@@ -13,39 +12,40 @@ def customer_home(request):
 
 def contractor_dashboard(request):
     return HttpResponse("Contractor Dashboard")
-#REGISTER
+
 def register(request):
-    form=RegisterForm()
+    form = RegisterForm()
     
-    if request.method=='POST':
-        form=RegisterForm(request.POST)
+    if request.method == 'POST':
+        form = RegisterForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect ('login')
+            return redirect('user_login')
     
-    return render(request,'register.html',{'form':form})
-#LOGIN
+    return render(request, 'register.html', {'form': form})
+
 def user_login(request):
-    if request.method=='POST':
-        username=request.POST['username']
-        password=request.POST['password']
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
         
-        user=authenticate(request,username=username,password=password)
+        user = authenticate(request, username=username, password=password)
         
-        if user:
-            login(request,user)
-            if user.role =='admin':
+        if user is not None:
+            login(request, user)
+            if user.role == 'admin':
                 return redirect('admin_dashboard')
-            elif user.role=='constrator':
+            elif user.role == 'contractor':
                 return redirect('contractor_dashboard')
             else:
-                return redirect('ustomer_home')
+                return redirect('customer_home')
+        else:
+            return render(request, 'login.html', {'error': 'Invalid credentials'})
         
     return render(request, 'login.html')
 
-#LOGOUT
 def user_logout(request):
     logout(request)
-    return redirect('login')
+    return redirect('user_login')
 
 
