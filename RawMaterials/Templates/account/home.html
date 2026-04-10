@@ -18,10 +18,13 @@
         <img src="{{ m.image.url }}" alt="{{ m.name }}" style="max-width: 200px;">
         {% endif %}
         <p>{{ m.description }}</p>
+         <a href="{% url 'delete_material' m.id %}">Delete Material</a>
     </div>
     {% endfor %}
     {% else %}
     <p>No materials available.</p>
     {% endif %}
+     <a href="{% url 'add_materials' %}">Add Material</a>
+    <a href="{% url 'home_materials' %}">Home</a>
 </body>
 </html>

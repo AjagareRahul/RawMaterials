@@ -29,3 +29,8 @@ def update_materials(request, pk):
         form = MaterialForm(instance=material)
     
     return render(request, 'account/add_materials.html', {'form': form})
+
+def delete_material(request,id):
+    material=get_object_or_404(Material,id=id)
+    material.delete()
+    return redirect('add_materials')
