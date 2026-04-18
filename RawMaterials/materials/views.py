@@ -33,4 +33,4 @@ def update_materials(request, pk):
 def delete_material(request,id):
     material=get_object_or_404(Material,id=id)
     material.delete()
-    return redirect('add_materials')
+    return redirect('home_materials')
