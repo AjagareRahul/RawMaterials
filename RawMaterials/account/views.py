@@ -8,7 +8,7 @@ def admin_dashboard(request):
     return HttpResponse("Admin Dashboard")
 
 def customer_home(request):
-    return HttpResponse("Customer Home")
+    return render(request,'account/home.html')
 
 def contractor_dashboard(request):
     return HttpResponse("Contractor Dashboard")
@@ -22,7 +22,7 @@ def register(request):
             form.save()
             return redirect('user_login')
     
-    return render(request, 'register.html', {'form': form})
+    return render(request, 'account/register.html', {'form': form})
 
 def user_login(request):
     if request.method == 'POST':
@@ -40,9 +40,9 @@ def user_login(request):
             else:
                 return redirect('customer_home')
         else:
-            return render(request, 'login.html', {'error': 'Invalid credentials'})
+            return render(request, 'account/login.html', {'error': 'Invalid credentials'})
         
-    return render(request, 'login.html')
+    return render(request, 'account/login.html')
 
 def user_logout(request):
     logout(request)

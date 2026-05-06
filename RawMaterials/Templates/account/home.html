@@ -41,7 +41,6 @@
         <p>{{ m.description }}</p>
         <div class="actions">
             <a href="{% url 'add_to_cart' m.id %}" class="btn btn-add">Add to Cart</a>
-            <a href="{% url 'delete_material' m.id %}" class="btn btn-danger">Delete</a>
         </div>
     </div>
     {% endfor %}
