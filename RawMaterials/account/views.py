@@ -2,13 +2,15 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout 
 from django.http import HttpResponse
 from .forms import RegisterForm
+from materials.models import Material
 
 
 def admin_dashboard(request):
     return HttpResponse("Admin Dashboard")
 
 def customer_home(request):
-    return render(request,'account/home.html')
+    materials = Material.objects.all()
+    return render(request, 'account/home.html', {'material': materials})
 
 def contractor_dashboard(request):
     return HttpResponse("Contractor Dashboard")
