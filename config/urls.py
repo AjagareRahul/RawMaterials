@@ -21,4 +21,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('account.urls')),
     path('', include('materials.urls')),
+    path('', include('orders.urls')),
 ]

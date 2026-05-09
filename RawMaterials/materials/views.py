@@ -3,8 +3,14 @@ from .models import Material
 from .forms import MaterialForm
 
 def home_materials(request):
-    material = Material.objects.all()
-    return render(request, 'account/home.html', {'material': material})
+    materials = Material.objects.select_related('category').all()
+    categories = {}
+    for material in materials:
+        cat_name = material.category.name if material.category else 'Uncategorized'
+        if cat_name not in categories:
+            categories[cat_name] = []
+        categories[cat_name].append(material)
+    return render(request, 'account/home.html', {'categories': categories})
 
 def add_materials(request):
     if request.method == 'POST':
