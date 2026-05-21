@@ -1,5 +1,5 @@
 from django.urls import path
-from materials.views import home_materials, add_materials, update_materials,delete_material
+from .views import home_materials, add_materials, update_materials,delete_material
 
 urlpatterns = [
     path('', home_materials, name='home_materials'),

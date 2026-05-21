@@ -1,5 +1,5 @@
 from django.urls import path
-from account.views import user_login, user_logout, register, admin_dashboard, customer_home, contractor_dashboard
+from .views import user_login, user_logout, register, admin_dashboard, customer_home, contractor_dashboard
 
 urlpatterns = [
     path('', register, name='register'),
